@@ -3,23 +3,16 @@ import sys
 start = list(map(int, sys.stdin.readline().rstrip().split(':')))
 end = list(map(int, sys.stdin.readline().rstrip().split(':')))
 
-end[0] += 24
-end[1] += 60
-end[2] += 60
+start_sec = start[0] * 3600 + start[1] * 60 + start[2]
+end_sec = end[0] * 3600 + end[1] * 60 + end[2]
 
-end = [end[i] - start[i] for i in range(len(end))]
+diff = end_sec - start_sec
 
-if end[0] >= 24 :
-    end[0] -= 24
+if diff <= 0:
+    diff += 24 * 3600
 
-if end[1] >= 60 :
-    end[1] -= 60
-else :
-    end[0] -= 1
+h = diff // 3600
+m = (diff % 3600) // 60
+s = diff % 60
 
-if end[2] >= 60 :
-    end[2] -= 60
-else :
-    end[1] -= 1
-
-print(f"{end[0]:02d}:{end[1]:02d}:{end[2]:02d}")
+print(f"{h:02d}:{m:02d}:{s:02d}")
