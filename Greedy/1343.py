@@ -32,7 +32,6 @@ for i in range(len(board)) :
         if start == -1 :
             start = i
 
-# 마지막에 남은 X 구간 처리
 if start != -1:
     length = len(board) - start
     if length % 2 == 1:
